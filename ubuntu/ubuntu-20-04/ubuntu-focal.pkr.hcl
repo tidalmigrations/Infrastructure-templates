@@ -58,10 +58,8 @@ build {
   provisioner "shell" {    
     inline = [
       "echo ++ Updating",
-      "sleep 30",
       "sudo apt-get update",
       "echo ++ Installing Tidal Tools",
-      "sleep 30",
       "curl https://get.tidal.sh/unix | bash",      
       "echo ++ Installing PIP",
       "sudo apt-get install --yes python3-pip",
