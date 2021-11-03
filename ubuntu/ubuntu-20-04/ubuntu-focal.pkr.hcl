@@ -8,10 +8,6 @@ packer {
   }
 }
 
-locals {
-  timestamp = regex_replace(timestamp(), "[- TZ:]", "")
-}
-
 variable aws_access_key {
   type        = string
   default     = ""
@@ -32,7 +28,7 @@ variable aws_region {
 
 
 source "amazon-ebs" "ubuntu" {
-  ami_name      = "ubuntu-tidal-migrations-${local.timestamp}"
+  ami_name      = "tidal-migrations-ubuntu-20-04"
   instance_type = "t2.micro"
   region        = "${var.aws_region}"
   access_key    = "${var.aws_access_key}"
@@ -46,7 +42,9 @@ source "amazon-ebs" "ubuntu" {
     most_recent = true
     owners      = ["099720109477"]
   }
-  ssh_username = "ubuntu"
+  ssh_username          = "ubuntu"
+  force_deregister      = true
+  force_delete_snapshot = true
 }
 
 build {
@@ -59,20 +57,21 @@ build {
     inline = [
       "echo ++ Updating",
       "sudo apt-get update",
+      "apt-get install dialog apt-utils -y",
       "echo ++ Installing Tidal Tools",
-      "curl https://get.tidal.sh/unix | bash",      
+      "curl https://get.tidal.sh/unix | bash",
       "echo ++ Installing PIP",
       "sudo apt-get install --yes python3-pip",
       "echo ++ Installing jq",
       "sudo apt-get install --yes jq",
       "echo ++ Upgrading PIP",
       "python3 -m pip install --upgrade pip",
-      "echo ++ Updating PATH",      
+      "echo ++ Updating PATH",
       "export PATH=/home/ubuntu/.local/bin:$PATH",
       "echo ++ Installing Machine-Stats",
       "python3 -m pip install machine-stats",
       "echo ++ Installing Nmap",
-      "sudo apt install --yes  nmap",
+      "sudo apt-get install --yes  nmap",
       "echo ++++ DONE ++++"
     ]
   }
