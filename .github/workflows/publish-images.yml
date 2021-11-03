@@ -1,0 +1,32 @@
+name: Publish AMIs
+
+on:
+  push:
+    branches: 
+      - main
+
+jobs:
+  publish-images:
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEPLOYMENT_REGION }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install packer
+        uses: hashicorp-contrib/setup-packer@v1
+
+      - name: Publish Ubuntu-20.04 AMI
+        working-directory: ubuntu/ubuntu-20-04
+        run: |
+          packer init -upgrade ubuntu-focal.pkr.hcl
+          packer build -var-file="config.auto.pkrvars.hcl" .
+
+      - name: Publish Ubuntu-18.04 AMI
+        working-directory: ubuntu/ubuntu-18-04
+        run: |
+          packer init -upgrade ubuntu-bionic.pkr.hcl
+          packer build -var-file="config.auto.pkrvars.hcl" .
