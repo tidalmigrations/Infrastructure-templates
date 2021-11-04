@@ -26,9 +26,12 @@ variable aws_region {
   default     = ""
 }
 
+locals {
+  timestamp = regex_replace(timestamp(), "[- TZ:]", "")
+}
 
 source "amazon-ebs" "ubuntu" {
-  ami_name      = "tidal-migrations-ubuntu-20-04"
+  ami_name      = "tidal-migrations-ubuntu-20-04-${local.timestamp}"
   instance_type = "t2.micro"
   region        = "${var.aws_region}"
   access_key    = "${var.aws_access_key}"

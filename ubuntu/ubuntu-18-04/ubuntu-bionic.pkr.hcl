@@ -8,6 +8,10 @@ packer {
   }
 }
 
+locals {
+  timestamp = regex_replace(timestamp(), "[- TZ:]", "")
+}
+
 variable aws_access_key {
   type        = string
   default     = ""
@@ -20,7 +24,6 @@ variable aws_secret_key {
   description = "Add your AWS Secret Access key"
   sensitive   = true
 }
-
 variable aws_region {
   type        = string
   default     = ""
@@ -28,7 +31,7 @@ variable aws_region {
 
 
 source "amazon-ebs" "ubuntu" {
-  ami_name      = "tidal-migrations-ubuntu-18-04"
+  ami_name      = "tidal-migrations-ubuntu-18-04-${local.timestamp}"
   instance_type = "t2.micro"
   region        = "${var.aws_region}"
   access_key    = "${var.aws_access_key}"
