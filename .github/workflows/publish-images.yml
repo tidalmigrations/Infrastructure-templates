@@ -1,9 +1,9 @@
 name: Publish AMIs
 
 on:
-  push:
-    branches: 
-      - main
+  repository_dispatch:
+    types:
+      - publish_amis
 
 jobs:
   publish-images:
