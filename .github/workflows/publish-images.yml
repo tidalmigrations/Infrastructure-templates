@@ -39,10 +39,7 @@ jobs:
       - name: Export Ubuntu-20.04 image to S3
         working-directory: ubuntu/ubuntu-20-04
         run: |
-          aws ec2 export-image --image-id ${{ env.AMI_ID_UBUNTU_20 }} \
-			                         --disk-image-format VMDK \
-			                         --region=${{ env.AWS_DEFAULT_REGION }} \
-			                         --s3-export-location S3Bucket=${{ env.EXPORT_AMI_S3_BUCKET }},S3Prefix=/
+          aws ec2 export-image --image-id ${{ env.AMI_ID_UBUNTU_20 }} --disk-image-format VMDK --region=${{ env.AWS_DEFAULT_REGION }} --s3-export-location S3Bucket=${{ env.EXPORT_AMI_S3_BUCKET }},S3Prefix=/
 
       # - name: Publish Ubuntu-18.04 AMI
       #   working-directory: ubuntu/ubuntu-18-04
