@@ -1,6 +1,9 @@
 name: Publish AMIs
 
 on:
+  push:
+    branch:
+      - pranav/export-ami
   repository_dispatch:
     types:
       - publish_amis
