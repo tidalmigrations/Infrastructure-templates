@@ -15,6 +15,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: ${{ secrets.AWS_DEPLOYMENT_REGION }}
+      EXPORT_AMI_S3_BUCKET: ${{ secrets.EXPORT_AMI_S3_BUCKET }}
 
     steps:
       - uses: actions/checkout@v2
@@ -22,14 +23,29 @@ jobs:
       - name: Install packer
         uses: hashicorp-contrib/setup-packer@v1
 
+      # Command-line JSON processor to get the AMI ID from the packer post-processor manifest
+      - name: Install jq
+        run: pip install jq
+
+      # Build and publish the image and create an env var AMI_ID_UBUNTU_20 with the AMI ID
       - name: Publish Ubuntu-20.04 AMI
         working-directory: ubuntu/ubuntu-20-04
         run: |
           packer init -upgrade ubuntu-focal.pkr.hcl
           packer build -var-file="config.auto.pkrvars.hcl" .
-
-      - name: Publish Ubuntu-18.04 AMI
-        working-directory: ubuntu/ubuntu-18-04
+          echo "AMI_ID_UBUNTU_20=$(jq -r '.builds[-1].artifact_id' manifest.json | cut -d ":" -f2)" >> $GITHUB_ENV
+      
+      # Export the newly build image as VMDK to an S3 bucket
+      - name: Export Ubuntu-20.04 image to S3
+        working-directory: ubuntu/ubuntu-20-04
         run: |
-          packer init -upgrade ubuntu-bionic.pkr.hcl
-          packer build -var-file="config.auto.pkrvars.hcl" .
+          aws ec2 export-image --image-id ${{ env.AMI_ID_UBUNTU_20 }} \
+			                         --disk-image-format VMDK \
+			                         --region=${{ env.AWS_DEFAULT_REGION }} \
+			                         --s3-export-location S3Bucket=${{ env.EXPORT_AMI_S3_BUCKET }},S3Prefix=/
+
+      # - name: Publish Ubuntu-18.04 AMI
+      #   working-directory: ubuntu/ubuntu-18-04
+      #   run: |
+      #     packer init -upgrade ubuntu-bionic.pkr.hcl
+      #     packer build -var-file="config.auto.pkrvars.hcl" .

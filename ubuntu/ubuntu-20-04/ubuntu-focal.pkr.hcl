@@ -78,6 +78,11 @@ build {
       "echo ++++ DONE ++++"
     ]
   }
+
+  post-processor "manifest" {
+    output = "manifest.json"
+    strip_path = true
+  }
 }
 
 
