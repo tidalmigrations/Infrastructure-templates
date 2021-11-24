@@ -1,0 +1,50 @@
+{
+    "builders": [
+        {
+            "type": "virtualbox-iso",
+            "vm_name": "ubuntu-2004-live-server",
+            "ssh_username": "vagrant",
+            "ssh_password": "vagrant",
+            "ssh_timeout": "10000s",
+            "ssh_port": 22,
+
+            "boot_wait": "5s",
+            "boot_command": [
+                " <wait>",
+                " <wait>",
+                " <wait>",
+                " <wait>",
+                " <wait>",
+                "<esc><wait>",
+                "<f6><wait>",
+                "<esc><wait>",
+                "<bs><bs><bs><bs><wait>",
+                " autoinstall<wait5>",
+                " ds=nocloud-net<wait5>",
+                ";s=http://<wait5>{{.HTTPIP}}<wait5>:{{.HTTPPort}}/<wait5>",
+                " ---<wait5>",
+                "<enter><wait5>"
+            ],
+
+            "cpus": 2,
+            "memory": 2048,
+            "disk_size": 40000,
+            "guest_os_type": "Ubuntu_64",
+
+            "http_directory": "http",
+            "iso_checksum": "f8e3086f3cea0fb3fefb29937ab5ed9d19e767079633960ccb50e76153effc98",
+            "iso_urls": [
+                "./iso/ubuntu-20.04.3-live-server-amd64.iso",
+                "http://releases.ubuntu.com/focal/ubuntu-20.04.3-live-server-amd64.iso"
+            ],
+            "output_directory": "./",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+        }
+    ],
+    "post-processors": [
+        {
+            "output": "./ubuntu-2004-live-server.box",
+            "type": "vagrant"
+        }
+    ]
+}
