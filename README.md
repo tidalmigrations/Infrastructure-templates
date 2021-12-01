@@ -11,17 +11,6 @@ You can find the installation instruction for you OS [here](https://learn.hashic
 
 ## Folder Structure
 ```
-.
-└── .github 
-    ├── workflows    
-    |   └── publish-images.yml
-    ├── 2015 
-│   └── index.markdown
-├── _posts 
-│   └── 2014-12-27-2014-yili-degerlendirmesi.markdown
-├── _stash 
-└── update.sh 
-
 infrastructure-templates
 ├── README.md
 ├── .github
