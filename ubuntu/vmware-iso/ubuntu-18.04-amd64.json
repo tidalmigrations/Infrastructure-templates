@@ -78,7 +78,7 @@
       "expect_disconnect": true,
       "scripts": [
         "{{template_dir}}/scripts/update.sh",
-        "{{template_dir}}/../_common/sshd.sh",
+        "{{template_dir}}/scripts/sshd.sh",
         "{{template_dir}}/scripts/networking.sh",
         "{{template_dir}}/scripts/sudoers.sh",
         "{{template_dir}}/scripts/vagrant.sh",
