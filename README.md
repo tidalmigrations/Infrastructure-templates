@@ -5,7 +5,7 @@ A collection of Packer templates to create AMI with our projects installed and c
 
 ## Installation
 
-You can find the installation instruction for you OS [here](https://learn.hashicorp.com/tutorials/packer/get-started-install-cli?in=packer/aws-get-started#installing-packer)
+You can find the installation instruction for your OS [here](https://learn.hashicorp.com/tutorials/packer/get-started-install-cli?in=packer/aws-get-started#installing-packer)
 
 
 
