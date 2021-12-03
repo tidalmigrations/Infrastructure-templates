@@ -9,12 +9,21 @@
 
 ## How to run
 
-- Build the packer template by running this command
-  `packer build ubuntu-18.04-amd64.json`
+1. Navigate to the image folder you plan to generate. For example, ubuntu-18-04
 
-- (Optional) Add following env vars to export the logs in a file
+    ```sh
+    cd ubuntu-18-04
+    ```
 
-  ```sh
-  export PACKER_LOG=1
-  export PACKER_LOG_PATH="packerlog.txt"
-  ```
+2. (Optional) Add following env vars to export the logs in a file
+
+   ```sh
+   export PACKER_LOG=1
+   export PACKER_LOG_PATH="packerlog.txt"
+   ```
+
+3. Build the packer template by running this command
+
+   ```sh
+   packer build ubuntu-18.04-amd64.json
+   ```
