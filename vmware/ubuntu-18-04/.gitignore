@@ -3,4 +3,3 @@ packerlog.txt
 /packer_cache/*
 /iso/*
 /builds/*
-/builds-test/*

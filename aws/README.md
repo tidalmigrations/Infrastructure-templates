@@ -28,4 +28,6 @@
     packer build .
     ```
 
+4. Once Packer is done building the image, you can find it in your AWS AMI section. (Make sure you are in the same region you have on your `config.auto.pkrvars.hcl` file)
+
 *Note: you can adjust the region where your images will be deploy by modifying the `config.auto.pkrvars.hcl` file found in each one of the folders*
