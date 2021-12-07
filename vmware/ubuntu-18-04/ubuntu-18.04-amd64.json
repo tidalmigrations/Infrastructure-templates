@@ -49,7 +49,7 @@
       "ssh_password": "vagrant",
       "tools_upload_flavor": "linux",
 
-      "headless": "{{ user `headless` }}",
+      "headless": "false",
       "guest_os_type": "ubuntu-64",
       "output_directory": "builds/packer-ubuntu-18.04-amd64-vmware",
       "skip_export": false,
