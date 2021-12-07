@@ -1,0 +1,24 @@
+name: Publish VMware image
+
+on:
+  push:
+    branches: 
+      - pranav/vmware-pipeline
+  # repository_dispatch:
+  #   types: [publish_amis]
+
+jobs:
+  publish-images:
+    runs-on: macos-11
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install VMware Fusion
+        run: |
+          brew install --cask vmware-fusion
+
+      - name: Publish Ubuntu-18.04 AMI
+        working-directory: vmware/ubuntu-18-04
+        run: |
+          packer build ubuntu-18.04-amd64.json
