@@ -16,6 +16,21 @@
     export AWS_SECRET_ACCESS_KEY = ***********
     ```
 
+    Make sure that your AWS user has following permissions.
+
+    ```text
+    EC2:CreateImage
+    EC2:DeleteKeyPair
+    EC2:DeleteSecurityGroup
+    EC2:DeleteSnapshot
+    EC2:DeregisterImage
+    EC2:DescribeImages
+    EC2:DescribeInstances
+    EC2:DescribeVolumes
+    EC2:StopInstances
+    EC2:TerminateInstances
+    ```
+
 2. Navigate to the image folder you plan to generate. For example, ubuntu-20-04
 
     ```sh
