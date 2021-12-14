@@ -36,8 +36,18 @@ source "amazon-ebs" "rhel7" {
   region        = "${var.aws_region}"
   access_key    = "${var.aws_access_key}"
   secret_key    = "${var.aws_secret_key}"
-  source_ami    = "ami-02d40d11bb3aaf3e5"
+  source_ami_filter {
+    filters = {
+      name                = "RHEL-7*-x86_64-*"
+      root-device-type    = "ebs"
+      virtualization-type = "hvm"
+    }
+    most_recent = true
+    owners      = ["309956199498"]
+  }
   ssh_username = "ec2-user"
+  force_deregister      = true
+  force_delete_snapshot = true
 }
 
 build {
