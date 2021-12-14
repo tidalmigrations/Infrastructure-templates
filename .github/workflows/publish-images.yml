@@ -30,3 +30,9 @@ jobs:
         run: |
           packer init -upgrade ubuntu-bionic.pkr.hcl
           packer build -var-file="config.auto.pkrvars.hcl" .
+      
+      - name: Publish RHEL7 AMI
+        working-directory: rhel/rhel7
+        run: |
+          packer init -upgrade rhel7.pkr.hcl
+          packer build -var-file="config.auto.pkrvars.hcl" .
