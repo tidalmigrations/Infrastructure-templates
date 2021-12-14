@@ -46,6 +46,8 @@ source "amazon-ebs" "rhel7" {
     owners      = ["309956199498"]
   }
   ssh_username = "ec2-user"
+  force_deregister      = true
+  force_delete_snapshot = true
 }
 
 build {
