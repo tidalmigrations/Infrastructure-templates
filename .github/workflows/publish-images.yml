@@ -20,19 +20,19 @@ jobs:
         uses: hashicorp-contrib/setup-packer@v1
 
       - name: Publish Ubuntu-20.04 AMI
-        working-directory: ubuntu/ubuntu-20-04
+        working-directory: aws/ubuntu/ubuntu-20-04
         run: |
           packer init -upgrade ubuntu-focal.pkr.hcl
           packer build -var-file="config.auto.pkrvars.hcl" .
 
       - name: Publish Ubuntu-18.04 AMI
-        working-directory: ubuntu/ubuntu-18-04
+        working-directory: aws/ubuntu/ubuntu-18-04
         run: |
           packer init -upgrade ubuntu-bionic.pkr.hcl
           packer build -var-file="config.auto.pkrvars.hcl" .
       
       - name: Publish RHEL7 AMI
-        working-directory: rhel/rhel7
+        working-directory: aws/rhel/rhel7
         run: |
           packer init -upgrade rhel7.pkr.hcl
           packer build -var-file="config.auto.pkrvars.hcl" .
