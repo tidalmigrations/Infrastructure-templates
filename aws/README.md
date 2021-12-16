@@ -16,20 +16,7 @@
     export AWS_SECRET_ACCESS_KEY = ***********
     ```
 
-    Make sure that your AWS user has following permissions.
-
-    ```text
-    EC2:CreateImage
-    EC2:DeleteKeyPair
-    EC2:DeleteSecurityGroup
-    EC2:DeleteSnapshot
-    EC2:DeregisterImage
-    EC2:DescribeImages
-    EC2:DescribeInstances
-    EC2:DescribeVolumes
-    EC2:StopInstances
-    EC2:TerminateInstances
-    ```
+    Make sure that your AWS user has [these permissions](https://www.packer.io/docs/builders/amazon#iam-task-or-instance-role).
 
 2. Navigate to the image folder you plan to generate. For example, ubuntu-20-04
 
@@ -37,7 +24,7 @@
     cd ubuntu/ubuntu-20-04
     ```
 
-3. Build the image by running this command
+3. Build the image by running this command.
 
     ```sh
     packer build .
