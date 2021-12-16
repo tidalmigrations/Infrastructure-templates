@@ -24,4 +24,21 @@ curl https://get.tidal.sh/unix | bash
 echo ++ Installing Nmap
 sudo yum install -y nmap
 
+echo ++ Installing Docker
+
+# Install yum-utils
+sudo yum install -y yum-utils
+
+# Enable extras repo
+sudo yum-config-manager --enable rhel-7-server-rhui-extras-rpms
+
+# Check that repo was enabled
+sudo yum repolist enabled
+
+# Add Docker repo
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+# Install Docker engine and containerd
+sudo yum install -y docker-ce docker-ce-cli containerd.io
+
 echo ++++ DONE ++++
