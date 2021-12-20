@@ -42,14 +42,14 @@
       "cpus": "{{ user `cpus` }}",
       "memory": "{{ user `memory` }}",
       "disk_size": "{{user `disk_size`}}",
-      
+
       "ssh_port": 22,
       "ssh_timeout": "10000s",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "tools_upload_flavor": "linux",
 
-      "headless": "false",
+      "headless": "true",
       "guest_os_type": "ubuntu-64",
       "output_directory": "builds/packer-ubuntu-18.04-amd64-vmware",
       "skip_export": false,
