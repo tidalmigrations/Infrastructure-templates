@@ -14,6 +14,7 @@
       "http_directory": "http",
       "boot_wait": "5s",
       "boot_command": [
+        "<wait5s>",
         "<esc><wait>",
         "<esc><wait>",
         "<enter><wait>",
