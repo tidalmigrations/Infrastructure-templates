@@ -1,10 +1,8 @@
 # Infrastructure-templates
 
-A collection of Packer templates to create AWS AMIs and VMware image with our projects installed and configured. This repository contains packer templates created using [amazon-ebc](https://www.packer.io/docs/builders/amazon/ebs) and [vmware-iso](https://www.packer.io/docs/builders/vmware/iso) builders.
+A collection of Packer templates to create AWS AMIs with our projects installed and configured. This repository contains packer templates created using [amazon-ebs](https://www.packer.io/docs/builders/amazon/ebs) builder. It leverages the AWS EC2 and creates an Amazon Machine Image (AMI).
 
-The [amazon-ebc](https://www.packer.io/docs/builders/amazon/ebs) builder leverages the AWS EC2 and creates an Amazon Machine Image (AMI), while the [vmware-iso](https://www.packer.io/docs/builders/vmware/iso) builder uses VMware tools and exports an OVA file.
-
-Requirements and steps to run these packer templates are inside their respective folders.
+Requirements and steps to run this packer template is inside `aws` folder.
 
 ## Folder Structure
 
@@ -14,37 +12,21 @@ infrastructure-templates
 ├── .github
 │   └── workflows
 │       └── publish-images.yml
-├── aws
-|   ├── README.md
-|   ├── ubuntu
-|   │   ├── scripts
-|   │   │   └── setup.sh
-|   │   ├── ubuntu-18-04
-|   │   │   ├── config.auto.pkrvars.hcl
-|   │   │   └── ubuntu-bionic.pkr.hcl
-|   │   └── ubuntu-20-04
-|   │       ├── config.auto.pkrvars.hcl
-|   │       └── ubuntu-focal.pkr.hcl
-|   └── rhel
-|       └── rhel7
-|       ├── scripts
-|       │   └── setup.sh
-|       ├── config.auto.pkrvars.hcl
-|       └── rhel7.pkr.hcl
-└── vmware
+└── aws
     ├── README.md
-    └── ubuntu-18-04
+    ├── ubuntu
+    │   ├── scripts
+    │   │   └── setup.sh
+    │   ├── ubuntu-18-04
+    │   │   ├── config.auto.pkrvars.hcl
+    │   │   └── ubuntu-bionic.pkr.hcl
+    │   └── ubuntu-20-04
+    │       ├── config.auto.pkrvars.hcl
+    │       └── ubuntu-focal.pkr.hcl
+    └── rhel
+        └── rhel7
         ├── scripts
-        |   ├── cleanup.sh
-        |   ├── networking.sh
-        |   ├── sshd.sh
-        |   ├── tidal-ubuntu-1804.sh
-        |   ├── update.sh
-        |   ├── vagrant.sh
-        │   └── vmware.sh
-        ├── http
-        |   ├── preseed.cfg
-        |   ├── meta-data
-        │   └── user-data
-        └── ubuntu-18.04-amd64.json
+        │   └── setup.sh
+        ├── config.auto.pkrvars.hcl
+        └── rhel7.pkr.hcl
 ```
