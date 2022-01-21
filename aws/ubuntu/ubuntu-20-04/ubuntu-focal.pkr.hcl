@@ -1,4 +1,3 @@
-
 packer {
   required_plugins {
     amazon = {
@@ -7,6 +6,7 @@ packer {
     }
   }
 }
+
 
 variable aws_access_key {
   type        = string
@@ -20,18 +20,14 @@ variable aws_secret_key {
   description = "Add your AWS Secret Access key"
   sensitive   = true
 }
-
 variable aws_region {
   type        = string
   default     = ""
 }
 
-locals {
-  timestamp = regex_replace(timestamp(), "[- TZ:]", "")
-}
 
 source "amazon-ebs" "ubuntu" {
-  ami_name      = "tidal-migrations-ubuntu-20-04-${local.timestamp}"
+  ami_name      = "tidal-migrations-ubuntu-20-04"
   instance_type = "t2.micro"
   region        = "${var.aws_region}"
   access_key    = "${var.aws_access_key}"
@@ -50,6 +46,7 @@ source "amazon-ebs" "ubuntu" {
   force_delete_snapshot = true
 }
 
+
 build {
   name    = "ubuntu-mvp"
   sources = [
@@ -60,6 +57,3 @@ build {
     script = "../scripts/setup.sh"
   }
 }
-
-
-
