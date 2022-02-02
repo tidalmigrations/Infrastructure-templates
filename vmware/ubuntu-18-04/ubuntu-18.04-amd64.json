@@ -50,7 +50,7 @@
       "ssh_password": "vagrant",
       "tools_upload_flavor": "linux",
 
-      "headless": "true",
+      "headless": "false",
       "guest_os_type": "ubuntu-64",
       "output_directory": "builds/packer-ubuntu-18.04-amd64-vmware",
       "skip_export": false,
@@ -78,6 +78,7 @@
         "{{template_dir}}/scripts/networking.sh",
         "{{template_dir}}/scripts/sudoers.sh",
         "{{template_dir}}/scripts/vagrant.sh",
+        "{{template_dir}}/scripts/virtualbox.sh",
         "{{template_dir}}/scripts/vmware.sh",
         "{{template_dir}}/scripts/cleanup.sh",
         "{{template_dir}}/scripts/tidal-ubuntu-1804.sh"
