@@ -1,0 +1,88 @@
+{
+  "builders": [
+    {
+      "type": "vmware-iso",
+      "vm_name": "ubuntu-20.04-amd64",
+      "format": "ova",
+
+      "iso_urls": [
+        "iso/ubuntu-20.04.3-live-server-amd64.iso",
+        "http://releases.ubuntu.com/focal/ubuntu-20.04.3-live-server-amd64.iso"
+      ],
+      "iso_checksum": "file:http://releases.ubuntu.com/focal/SHA256SUMS",
+
+      "http_directory": "http",
+      "boot_wait": "5s",
+      "boot_command": [
+          " <wait>",
+          " <wait>",
+          " <wait>",
+          " <wait>",
+          " <wait>",
+          "<esc><wait>",
+          "<f6><wait>",
+          "<esc><wait>",
+          "<bs><bs><bs><bs><wait>",
+          " autoinstall<wait5>",
+          " ds=nocloud-net<wait5>",
+          ";s=http://<wait5>{{.HTTPIP}}<wait5>:{{.HTTPPort}}/<wait5>",
+          " ---<wait5>",
+          "<enter><wait5>"
+      ],
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+
+      "cpus": "{{ user `cpus` }}",
+      "memory": "{{ user `memory` }}",
+      "disk_size": "{{user `disk_size`}}",
+
+      "ssh_port": 22,
+      "ssh_timeout": "10000s",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "tools_upload_flavor": "linux",
+
+      "headless": "false",
+      "guest_os_type": "ubuntu-64",
+      "output_directory": "builds/packer-ubuntu-20.04-amd64-vmware",
+      "skip_export": false,
+      "vmx_data": {
+        "cpuid.coresPerSocket": "1",
+        "ethernet0.pciSlotNumber": "32"
+      },
+      "vmx_remove_ethernet_interfaces": true
+
+    }
+  ],  
+  "provisioners": [
+    {
+      "environment_vars": [
+        "HOME_DIR=/home/vagrant",
+        "http_proxy={{user `http_proxy`}}",
+        "https_proxy={{user `https_proxy`}}",
+        "no_proxy={{user `no_proxy`}}"
+      ],
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
+      "expect_disconnect": true,
+      "scripts": [
+        "{{template_dir}}/scripts/update.sh",
+        "{{template_dir}}/scripts/sshd.sh",
+        "{{template_dir}}/scripts/networking.sh",
+        "{{template_dir}}/scripts/sudoers.sh",
+        "{{template_dir}}/scripts/vagrant.sh",
+        "{{template_dir}}/scripts/virtualbox.sh",
+        "{{template_dir}}/scripts/vmware.sh",
+        "{{template_dir}}/scripts/cleanup.sh",
+        "{{template_dir}}/scripts/tidal-ubuntu-1804.sh"
+      ],
+      "type": "shell"
+    }
+  ],
+  "variables": {
+    "cpus": "2",
+    "memory": "2048",
+    "disk_size": "8192",
+    "http_proxy": "{{env `http_proxy`}}",
+    "https_proxy": "{{env `https_proxy`}}",
+    "no_proxy": "{{env `no_proxy`}}"
+  }
+}
