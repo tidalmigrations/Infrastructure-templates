@@ -1,0 +1,5 @@
+.DS_Store
+packerlog.txt
+/packer_cache/*
+/iso/*
+/builds/*
