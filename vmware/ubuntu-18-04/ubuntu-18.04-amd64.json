@@ -53,13 +53,7 @@
       "headless": "true",
       "guest_os_type": "ubuntu-64",
       "output_directory": "builds/packer-ubuntu-18.04-amd64-vmware",
-      "skip_export": false,
-      "vmx_data": {
-        "cpuid.coresPerSocket": "1",
-        "ethernet0.pciSlotNumber": "32"
-      },
-      "vmx_remove_ethernet_interfaces": true
-
+      "skip_export": false
     }
   ],  
   "provisioners": [

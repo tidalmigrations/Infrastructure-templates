@@ -1,8 +1,8 @@
 # Infrastructure-templates
 
-A collection of Packer templates to create AWS AMIs and VMware image with our projects installed and configured. This repository contains packer templates created using [amazon-ebc](https://www.packer.io/docs/builders/amazon/ebs) and [vmware-iso](https://www.packer.io/docs/builders/vmware/iso) builders.
+A collection of Packer templates to create AWS AMIs and VMware image with our projects installed and configured. This repository contains packer templates created using [amazon-ebs](https://www.packer.io/docs/builders/amazon/ebs) and [vmware-iso](https://www.packer.io/docs/builders/vmware/iso) builders.
 
-The [amazon-ebc](https://www.packer.io/docs/builders/amazon/ebs) builder leverages the AWS EC2 and creates an Amazon Machine Image (AMI), while the [vmware-iso](https://www.packer.io/docs/builders/vmware/iso) builder uses VMware tools and exports an OVA file.
+The [amazon-ebs](https://www.packer.io/docs/builders/amazon/ebs) builder leverages the AWS EC2 and creates an Amazon Machine Image (AMI), while the [vmware-iso](https://www.packer.io/docs/builders/vmware/iso) builder uses VMware tools and exports an OVA file.
 
 Requirements and steps to run these packer templates are inside their respective folders.
 
