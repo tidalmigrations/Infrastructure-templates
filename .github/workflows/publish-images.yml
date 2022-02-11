@@ -47,5 +47,5 @@ jobs:
         if: ${{ failure() }}
         run: |
           curl -X POST -H 'Content-type: application/json' \
-          --data '{"text": "Could not build and release the Packer AMIs. Please check the workflow logs in [Infrastructure-templates](https://github.com/tidalmigrations/Infrastructure-templates) repository.", "icon_emoji": ":rocket:"}' \
+          --data '{"text": "@invalidators Failed to build and release the Packer AMIs. Please check the workflow logs in Infrastructure-templates repository."}' \
           ${{ secrets.SLACK_WEBHOOK_TIDAL_TOOLS }}
