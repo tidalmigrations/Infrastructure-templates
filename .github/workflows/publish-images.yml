@@ -1,6 +1,9 @@
 name: Publish AMIs
 
 on:
+  push:
+    branches:
+      - pranav/fail-notification
   repository_dispatch:
     types:
       - publish_amis
@@ -16,26 +19,29 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install packer
-        uses: hashicorp-contrib/setup-packer@v1
+      # - name: Install packer
+      #   uses: hashicorp-contrib/setup-packer@v1
 
-      - name: Publish Ubuntu-20.04 AMI
-        working-directory: aws/ubuntu/ubuntu-20-04
-        run: |
-          packer init -upgrade ubuntu-focal.pkr.hcl
-          packer build -var-file="config.auto.pkrvars.hcl" .
+      # - name: Publish Ubuntu-20.04 AMI
+      #   working-directory: aws/ubuntu/ubuntu-20-04
+      #   run: |
+      #     packer init -upgrade ubuntu-focal.pkr.hcl
+      #     packer build -var-file="config.auto.pkrvars.hcl" .
 
-      - name: Publish Ubuntu-18.04 AMI
-        working-directory: aws/ubuntu/ubuntu-18-04
-        run: |
-          packer init -upgrade ubuntu-bionic.pkr.hcl
-          packer build -var-file="config.auto.pkrvars.hcl" .
+      # - name: Publish Ubuntu-18.04 AMI
+      #   working-directory: aws/ubuntu/ubuntu-18-04
+      #   run: |
+      #     packer init -upgrade ubuntu-bionic.pkr.hcl
+      #     packer build -var-file="config.auto.pkrvars.hcl" .
 
-      - name: Publish RHEL7 AMI
-        working-directory: aws/rhel/rhel7
-        run: |
-          packer init -upgrade rhel7.pkr.hcl
-          packer build -var-file="config.auto.pkrvars.hcl" .
+      # - name: Publish RHEL7 AMI
+      #   working-directory: aws/rhel/rhel7
+      #   run: |
+      #     packer init -upgrade rhel7.pkr.hcl
+      #     packer build -var-file="config.auto.pkrvars.hcl" .
+      
+      - name: This step will fail
+        run: exit 1
 
       - name: Failure Slack notification
         if: ${{ failure() }}
