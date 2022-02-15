@@ -30,9 +30,16 @@ jobs:
         run: |
           packer init -upgrade ubuntu-bionic.pkr.hcl
           packer build -var-file="config.auto.pkrvars.hcl" .
-      
+
       - name: Publish RHEL7 AMI
         working-directory: aws/rhel/rhel7
         run: |
           packer init -upgrade rhel7.pkr.hcl
           packer build -var-file="config.auto.pkrvars.hcl" .
+
+      - name: Failure Slack notification
+        if: ${{ failure() }}
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text": "@invalidators Failed to build and release the Packer AMIs. Please check the workflow logs in Infrastructure-templates repository."}' \
+          ${{ secrets.SLACK_WEBHOOK_TIDAL_TOOLS }}
