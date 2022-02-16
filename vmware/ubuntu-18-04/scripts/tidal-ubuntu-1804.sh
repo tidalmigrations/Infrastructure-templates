@@ -25,6 +25,11 @@ python3 -m pip install machine-stats
 echo "++ Installing Nmap"
 sudo apt-get install --yes  nmap
 
+echo "Installing dns-tools"
+curl --output - https://d2ny8m13pxxvfx.cloudfront.net/dns-tools/dns-tools-linux-x86_64-0.8.10.tar.gz \
+  | tar xzvf - -C /usr/local/bin --strip-components=1 --exclude=install_dns_tools.sh
+chmod a+w /usr/local/bin/lib/vendor/Gemfile.lock
+
 echo "Installing Docker"
 
 # Add Docker’s official GPG key
