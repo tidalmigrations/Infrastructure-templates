@@ -42,5 +42,5 @@
 6. Optionally, you can store this OVA file in an S3 bucket after setting up your AWS credentials.
 
    ```sh
-   aws s3 cp ./builds/packer-ubuntu-18-04-amd64-vmware/tidal-ubuntu-18-04-amd64.ova s3://YOUR_BUCKET_NAME/
+   aws s3 cp ./builds/packer-ubuntu-18-04-amd64-vmware/tidal-ubuntu-18-04-server-amd64.ova s3://YOUR_BUCKET_NAME/
    ```
