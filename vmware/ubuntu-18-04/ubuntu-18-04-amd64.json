@@ -2,7 +2,7 @@
   "builders": [
     {
       "type": "vmware-iso",
-      "vm_name": "tidal-ubuntu-18-04-amd64",
+      "vm_name": "tidal-ubuntu-18-04-server-amd64",
       "format": "ova",
 
       "iso_urls": [
