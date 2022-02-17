@@ -37,7 +37,7 @@
    packer build ubuntu-18.04-amd64.json
    ```
 
-5. This will take 20 to 80 minutes based on your OS and machine. Grab a coffee and appreciate life. At the end of the process, the OVA will be at `./builds/packer-ubuntu-18-04-amd64-vmware/tidal-ubuntu-18-04-amd64.ova` along with a few other files. If you're running the packer template again, the `packer-ubuntu-18-04-amd64-vmware` directory must not exist or be empty.
+5. This will take 20 to 80 minutes based on your OS and machine. Grab a coffee and appreciate life. At the end of the process, the OVA will be at `./builds/packer-ubuntu-18-04-amd64-vmware/tidal-ubuntu-18-04-server-amd64.ova` along with a few other files. If you're running the packer template again, the `packer-ubuntu-18-04-amd64-vmware` directory must not exist or be empty.
 
 6. Optionally, you can store this OVA file in an S3 bucket after setting up your AWS credentials.
 
