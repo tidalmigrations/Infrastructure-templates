@@ -29,7 +29,7 @@
    export PACKER_LOG_PATH="packerlog.txt"
    ```
 
-3. (Optional) If you want to follow the build process in GUI, then you need to turn the `headless` bool to `false` in the `ubuntu-18.04-amd64.json` file.
+3. (Optional) If you want to follow the build process in GUI, then you need to turn the `headless` bool to `false` in the `ubuntu-18-04-amd64.json` file.
 
 4. Build the packer template by running this command
 

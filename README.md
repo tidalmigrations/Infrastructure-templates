@@ -46,5 +46,5 @@ infrastructure-templates
         |   ├── preseed.cfg
         |   ├── meta-data
         │   └── user-data
-        └── ubuntu-18.04-amd64.json
+        └── ubuntu-18-04-amd64.json
 ```
