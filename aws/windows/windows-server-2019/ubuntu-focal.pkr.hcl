@@ -29,7 +29,7 @@ variable aws_region {
 source "amazon-ebs" "windows-2019" {
   ami_name      = "tidal-migrations-windows-server-2019"
   communicator  = "winrm"
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
   region        = "${var.aws_region}"
   access_key    = "${var.aws_access_key}"
   secret_key    = "${var.aws_secret_key}"
