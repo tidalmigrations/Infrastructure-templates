@@ -64,15 +64,9 @@ build {
     script = "../scripts/install_tidal_tools.ps1"
   }
 
-  // provisioner "windows-restart" {
-  // }
-
   provisioner "powershell" {
     script = "../scripts/install_git.ps1"
   }
-
-  // provisioner "windows-restart" {
-  // }
 
   provisioner "powershell" {
     script = "../scripts/install_machine_stats.ps1"
