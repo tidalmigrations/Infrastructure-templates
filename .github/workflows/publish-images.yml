@@ -36,6 +36,12 @@ jobs:
         run: |
           packer init -upgrade rhel7.pkr.hcl
           packer build -var-file="config.auto.pkrvars.hcl" .
+      
+      - name: Publish Windows Server 2019 AMI
+        working-directory: aws/windows/windows-server-2019
+        run: |
+          packer init -upgrade windows-server-2019.pkr.hcl
+          packer build -var-file="config.auto.pkrvars.hcl" .
 
       - name: Failure Slack notification
         if: ${{ failure() }}
