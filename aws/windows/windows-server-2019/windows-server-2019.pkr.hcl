@@ -71,4 +71,8 @@ build {
   provisioner "powershell" {
     script = "../scripts/install_machine_stats.ps1"
   }
+
+  provisioner "powershell" {
+    script = "../scripts/install_additional_tools.ps1"
+  }
 }
