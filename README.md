@@ -25,12 +25,21 @@ infrastructure-templates
 |   │   └── ubuntu-20-04
 |   │       ├── config.auto.pkrvars.hcl
 |   │       └── ubuntu-focal.pkr.hcl
-|   └── rhel
-|       └── rhel7
+|   ├── rhel
+|   │   ├── rhel7
+|   │   ├── scripts
+|   │   │   └── setup.sh
+|   │   ├── config.auto.pkrvars.hcl
+|   │   └── rhel7.pkr.hcl
+|   └── windows
 |       ├── scripts
-|       │   └── setup.sh
-|       ├── config.auto.pkrvars.hcl
-|       └── rhel7.pkr.hcl
+|       |   ├── install_git.ps1
+|       |   ├── install_machine_stats.ps1
+|       |   ├── install_tidal_tools.ps1
+|       │   └── win_user_data.txt
+|       └── windows-server-2019
+|           ├── config.auto.pkrvars.hcl
+|           └── windows-server-2019.pkr.hcl
 └── vmware
     ├── README.md
     └── ubuntu-18-04

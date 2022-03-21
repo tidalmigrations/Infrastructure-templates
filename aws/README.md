@@ -32,4 +32,11 @@
 
 4. Once Packer is done building the image, you can find it in your AWS AMI section. (Make sure you are in the same region you have on your `config.auto.pkrvars.hcl` file)
 
-*Note: you can adjust the region where your images will be deploy by modifying the `config.auto.pkrvars.hcl` file found in each one of the folders*
+    *Note: you can adjust the region where your images will be deploy by modifying the `config.auto.pkrvars.hcl` file found in each one of the folders*
+
+5. You can create EC2 instances from these AMIs. Please note that the credentials for the Windows Server packer builder are as following:
+
+    ```text
+    Username: Administrator
+    Password: Dev12345
+    ```
