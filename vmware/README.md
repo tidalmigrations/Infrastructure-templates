@@ -2,6 +2,8 @@
 
 ## Prerequisites
 
+> Instructions applicable to MacOS
+
 - [Packer](https://learn.hashicorp.com/tutorials/packer/get-started-install-cli?in=packer/aws-get-started#installing-packer)
 - VMware ([VMware Fusion](https://www.vmware.com/au/products/fusion.html) for Mac and [VMware Workstation](https://www.vmware.com/au/products/workstation-player.html) for Linux/Windows)
 - [OVFTool](https://developer.vmware.com/web/tool/4.4.0/ovf). Add OVFtool to your PATH as per your OS.
@@ -31,15 +33,23 @@
 
 3. (Optional) If you want to follow the build process in GUI, then you need to turn the `headless` bool to `false` in the `ubuntu-18-04-amd64.json` file.
 
-4. Build the packer template by running this command
+
+4. (Optional) If you have built a VM appliance before, You will have a folder with its content inside the `/builds/` directory. You will need to delete any existing build before proceeding. Run this command to do so:
+
+   ```sh
+   rm -rf /builds/*
+   ```
+
+
+5. To build a VMware appliance run the following Packer command.
 
    ```sh
    packer build ubuntu-18.04-amd64.json
    ```
 
-5. This will take 20 to 80 minutes based on your OS and machine. Grab a coffee and appreciate life. At the end of the process, the OVA will be at `./builds/packer-ubuntu-18-04-amd64-vmware/tidal-ubuntu-18-04-server-amd64.ova` along with a few other files. If you're running the packer template again, the `packer-ubuntu-18-04-amd64-vmware` directory must not exist or be empty.
+6. This will take 20 to 80 minutes based on your OS and machine. Grab a coffee and appreciate life. At the end of the process, the OVA will be at `./builds/packer-ubuntu-18-04-amd64-vmware/tidal-ubuntu-18-04-server-amd64.ova` along with a few other files.
 
-6. Optionally, you can store this OVA file in an S3 bucket after setting up your AWS credentials.
+7. Optionally, you can store this OVA file in an S3 bucket after setting up your AWS credentials.
 
    ```sh
    aws s3 cp ./builds/packer-ubuntu-18-04-amd64-vmware/tidal-ubuntu-18-04-server-amd64.ova s3://YOUR_BUCKET_NAME/
