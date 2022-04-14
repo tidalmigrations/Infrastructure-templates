@@ -1,93 +1,91 @@
 name: Publish AMIs
 
 on:
-  push:
-    branches: [ pranav/divide-workflow ]
   repository_dispatch:
     types:
       - publish_amis
 
 jobs:
-  # ubuntu-20-04:
-  #   name: Publish Ubuntu 20.04 AMI
-  #   runs-on: ubuntu-latest
-  #   env:
-  #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  #     AWS_DEFAULT_REGION: ${{ secrets.AWS_DEPLOYMENT_REGION }}
+  ubuntu-20-04:
+    name: Publish Ubuntu 20.04 AMI
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEPLOYMENT_REGION }}
 
-  #   steps:
-  #     - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-  #     - name: Install packer
-  #       uses: hashicorp-contrib/setup-packer@v1
+      - name: Install packer
+        uses: hashicorp-contrib/setup-packer@v1
 
-  #     - name: Publish Ubuntu-20.04 AMI
-  #       working-directory: aws/ubuntu/ubuntu-20-04
-  #       run: |
-  #         packer init -upgrade ubuntu-focal.pkr.hcl
-  #         packer build -var-file="config.auto.pkrvars.hcl" .
+      - name: Publish Ubuntu-20.04 AMI
+        working-directory: aws/ubuntu/ubuntu-20-04
+        run: |
+          packer init -upgrade ubuntu-focal.pkr.hcl
+          packer build -var-file="config.auto.pkrvars.hcl" .
 
-  #     - name: Failure Slack notification
-  #       if: ${{ failure() }}
-  #       run: |
-  #         curl -X POST -H 'Content-type: application/json' \
-  #         --data '{"text": "@invalidators Failed to build and release the Ubuntu 20.04 Packer AMI. Please check the workflow logs in Infrastructure-templates repository."}' \
-  #         ${{ secrets.SLACK_WEBHOOK_TIDAL_TOOLS }}
+      - name: Failure Slack notification
+        if: ${{ failure() }}
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text": "@invalidators Failed to build and release the Ubuntu 20.04 Packer AMI. Please check the workflow logs in Infrastructure-templates repository."}' \
+          ${{ secrets.SLACK_WEBHOOK_TIDAL_TOOLS }}
 
-  # ubuntu-18-04:
-  #   name: Publish Ubuntu 18.04 AMI
-  #   runs-on: ubuntu-latest
-  #   env:
-  #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  #     AWS_DEFAULT_REGION: ${{ secrets.AWS_DEPLOYMENT_REGION }}
+  ubuntu-18-04:
+    name: Publish Ubuntu 18.04 AMI
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEPLOYMENT_REGION }}
 
-  #   steps:
-  #     - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-  #     - name: Install packer
-  #       uses: hashicorp-contrib/setup-packer@v1
+      - name: Install packer
+        uses: hashicorp-contrib/setup-packer@v1
 
-  #     - name: Publish Ubuntu-18.04 AMI
-  #       working-directory: aws/ubuntu/ubuntu-18-04
-  #       run: |
-  #         packer init -upgrade ubuntu-bionic.pkr.hcl
-  #         packer build -var-file="config.auto.pkrvars.hcl" .
+      - name: Publish Ubuntu-18.04 AMI
+        working-directory: aws/ubuntu/ubuntu-18-04
+        run: |
+          packer init -upgrade ubuntu-bionic.pkr.hcl
+          packer build -var-file="config.auto.pkrvars.hcl" .
 
-  #     - name: Failure Slack notification
-  #       if: ${{ failure() }}
-  #       run: |
-  #         curl -X POST -H 'Content-type: application/json' \
-  #         --data '{"text": "@invalidators Failed to build and release the Ubuntu 18.04 Packer AMI. Please check the workflow logs in Infrastructure-templates repository."}' \
-  #         ${{ secrets.SLACK_WEBHOOK_TIDAL_TOOLS }}
+      - name: Failure Slack notification
+        if: ${{ failure() }}
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text": "@invalidators Failed to build and release the Ubuntu 18.04 Packer AMI. Please check the workflow logs in Infrastructure-templates repository."}' \
+          ${{ secrets.SLACK_WEBHOOK_TIDAL_TOOLS }}
 
-  # rhel-7:
-  #   name: Publish RHEL7 AMI
-  #   runs-on: ubuntu-latest
-  #   env:
-  #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  #     AWS_DEFAULT_REGION: ${{ secrets.AWS_DEPLOYMENT_REGION }}
+  rhel-7:
+    name: Publish RHEL7 AMI
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEPLOYMENT_REGION }}
 
-  #   steps:
-  #     - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-  #     - name: Install packer
-  #       uses: hashicorp-contrib/setup-packer@v1
+      - name: Install packer
+        uses: hashicorp-contrib/setup-packer@v1
 
-  #     - name: Publish RHEL7 AMI
-  #       working-directory: aws/rhel/rhel7
-  #       run: |
-  #         packer init -upgrade rhel7.pkr.hcl
-  #         packer build -var-file="config.auto.pkrvars.hcl" .
+      - name: Publish RHEL7 AMI
+        working-directory: aws/rhel/rhel7
+        run: |
+          packer init -upgrade rhel7.pkr.hcl
+          packer build -var-file="config.auto.pkrvars.hcl" .
 
-  #     - name: Failure Slack notification
-  #       if: ${{ failure() }}
-  #       run: |
-  #         curl -X POST -H 'Content-type: application/json' \
-  #         --data '{"text": "@invalidators Failed to build and release the RHEL7 Packer AMI. Please check the workflow logs in Infrastructure-templates repository."}' \
-  #         ${{ secrets.SLACK_WEBHOOK_TIDAL_TOOLS }}
+      - name: Failure Slack notification
+        if: ${{ failure() }}
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text": "@invalidators Failed to build and release the RHEL7 Packer AMI. Please check the workflow logs in Infrastructure-templates repository."}' \
+          ${{ secrets.SLACK_WEBHOOK_TIDAL_TOOLS }}
 
   windows-server-2019:
     name: Publish Windows Server 2019 AMI
