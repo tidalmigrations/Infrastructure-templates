@@ -43,7 +43,7 @@ sudo apt-get install --yes docker-ce docker-ce-cli containerd.io
 
 # Add docker images to run tidal-tools offline
 docker pull gcr.io/tidal-1529434400027/cast-highlight:latest
-docker pull gcr.io/tidal-1529434400027/tidal-db-analyzer:v1.0.38.x
+docker pull gcr.io/tidal-1529434400027/tidal-db-analyzer:v3.0.x
 docker pull gcr.io/tidal-1529434400027/healthchek:latest
 docker pull gcr.io/tidal-1529434400027/hello-world:latest
 
