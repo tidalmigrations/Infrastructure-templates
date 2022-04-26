@@ -16,8 +16,8 @@ python3 -m pip install --upgrade pip
 echo "++ Installing jq"
 sudo apt-get install --yes jq
 
-echo "++ Installing Machine-Stats"
-python3 -m pip install machine-stats
+echo "++ Installing Machine-Stats Alpha"
+python3 -m pip install machine-stats-alpha
 
 echo "++ Installing Nmap"
 sudo apt-get install --yes  nmap

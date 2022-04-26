@@ -31,11 +31,18 @@
 
 3. (Optional) If you want to follow the build process in GUI, then you need to turn the `headless` bool to `false` in the `ubuntu-18-04-amd64.json` file.
 
-4. Build the packer template by running this command
+4. Build the packer template by running one of these commands:
+   - **Option A**: To build the appliance with [Machine Stats' stable version](https://pypi.org/project/machine-stats/).
 
-   ```sh
-   packer build ubuntu-18.04-amd64.json
-   ```
+      ```sh
+      packer build ubuntu-18.04-amd64.json
+      ```
+
+   - **Option B**: To build the appliance with [Machine Stats Alpha](https://pypi.org/project/machine-stats-alpha/).
+
+      ```sh
+      packer build ubuntu-18.04-amd64-alpha.json
+      ```
 
 5. This will take 20 to 80 minutes based on your OS and machine. Grab a coffee and appreciate life. At the end of the process, the OVA will be at `./builds/packer-ubuntu-18-04-amd64-vmware/tidal-ubuntu-18-04-server-amd64.ova` along with a few other files. If you're running the packer template again, the `packer-ubuntu-18-04-amd64-vmware` directory must not exist or be empty.
 
