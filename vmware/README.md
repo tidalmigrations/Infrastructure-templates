@@ -33,19 +33,24 @@
 
 3. (Optional) If you want to follow the build process in GUI, then you need to turn the `headless` bool to `false` in the `ubuntu-18-04-amd64.json` file.
 
-
 4. (Optional) If you have built a VM appliance before, You will have a folder with its content inside the `/builds/` directory. You will need to delete any existing build before proceeding. Run this command to do so:
 
    ```sh
    rm -rf /builds/*
    ```
 
-
 5. To build a VMware appliance run the following Packer command.
+   - **Option A**: To build the appliance with [Machine Stats' stable version](https://pypi.org/project/machine-stats/).
 
-   ```sh
-   packer build ubuntu-18.04-amd64.json
-   ```
+      ```sh
+      packer build ubuntu-18.04-amd64.json
+      ```
+
+   - **Option B**: To build the appliance with [Machine Stats Alpha](https://pypi.org/project/machine-stats-alpha/).
+
+      ```sh
+      packer build ubuntu-18.04-amd64-alpha.json
+      ```
 
 6. This will take 20 to 80 minutes based on your OS and machine. Grab a coffee and appreciate life. At the end of the process, the OVA will be at `./builds/packer-ubuntu-18-04-amd64-vmware/tidal-ubuntu-18-04-server-amd64.ova` along with a few other files.
 
