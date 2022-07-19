@@ -33,16 +33,6 @@
       "winrm_username": "vagrant"
     }
   ],
-  "post-processors": [
-    [
-      {
-        "keep_input_artifact": true,
-        "output": "{{ user `build_directory` }}/{{ user `template` }}-{{.Provider}}.box",
-        "type": "vagrant",
-        "vagrantfile_template": "{{template_dir}}/vagrantfile-windows.template"
-      }
-    ]
-  ],
   "provisioners": [
     {
       "cookbook_paths": [
@@ -110,7 +100,7 @@
   "variables": {
     "build_directory": "./builds",
     "cpus": "2",
-    "disk_size": "20000",
+    "disk_size": "40000",
     "floppy_dir": "{{template_dir}}/scripts/unattended/Autounattend.xml",
     "headless": "false",
     "iso_checksum": "sha256:4f1457c4fe14ce48c9b2324924f33ca4f0470475e6da851b39ccbf98f44e7852",
