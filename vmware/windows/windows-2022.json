@@ -11,6 +11,7 @@
       ],
       "iso_checksum": "{{ user `iso_checksum` }}",
 
+      "boot_wait": "2m",
       "communicator": "winrm",
       "cpus": "{{ user `cpus` }}",
       "memory": "{{ user `memory` }}",
@@ -26,7 +27,6 @@
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "shutdown_timeout": "15m",
       "tools_upload_flavor": "windows",
-      "tools_upload_path": "c:/Windows/Temp/vmware.iso",
       "version": 19,
       "winrm_password": "vagrant",
       "winrm_timeout": "12h",
@@ -62,12 +62,20 @@
       "type": "windows-restart"
     },
     {
+      "scripts": [
+        "{{template_dir}}/scripts/common/vm-guest-tools.ps1"
+      ],
+      "type": "powershell"
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
       "cookbook_paths": [
         "{{template_dir}}/cookbooks"
       ],
       "guest_os_type": "windows",
       "run_list": [
-        "packer::vm_tools",
         "packer::features",
         "packer::enable_file_sharing",
         "packer::enable_remote_desktop",
