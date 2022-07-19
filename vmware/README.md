@@ -22,12 +22,20 @@
     cd ubuntu-18-04
     ```
 
-2. (Optional) Add following env vars to export the logs in a file
+2. (Optional) Add following env vars to export the logs in a file.
+   - For Unix
 
-   ```sh
-   export PACKER_LOG=1
-   export PACKER_LOG_PATH="packerlog.txt"
-   ```
+     ```sh
+     export PACKER_LOG=1
+     export PACKER_LOG_PATH="packerlog.txt"
+     ```
+
+   - For Windows
+
+     ```sh
+     $env:PACKER_LOG=1
+     $env:PACKER_LOG_PATH="packerlog.txt"
+     ```
 
 3. (Optional) If you want to follow the build process in GUI, then you need to turn the `headless` bool to `false` in the `ubuntu-18-04-amd64.json` file.
 
