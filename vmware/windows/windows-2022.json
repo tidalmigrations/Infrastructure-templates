@@ -18,7 +18,8 @@
       "disk_adapter_type": "lsisas1068",
 
       "floppy_files": [
-        "{{ user `floppy_dir` }}"
+        "{{template_dir}}/scripts/unattended/Autounattend.xml",
+        "{{template_dir}}/scripts/unattended/configure-winrm.ps1"
       ],
       "guest_os_type": "windows9srv-64",
       "headless": "{{ user `headless` }}",
@@ -26,7 +27,7 @@
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "shutdown_timeout": "15m",
       "tools_upload_flavor": "windows",
-      "tools_upload_path": "c:/Windows/Temp/vmware.iso",
+      "tools_upload_path": "c:/Windows/Temp/windows.iso",
       "version": 19,
       "winrm_password": "vagrant",
       "winrm_timeout": "12h",
@@ -45,55 +46,20 @@
   ],
   "provisioners": [
     {
-      "cookbook_paths": [
-        "{{template_dir}}/cookbooks"
-      ],
-      "guest_os_type": "windows",
-      "run_list": [
-        "packer::disable_uac",
-        "packer::disable_restore",
-        "packer::disable_windows_update",
-        "packer::configure_power",
-        "packer::disable_screensaver"
-      ],
-      "type": "chef-solo"
+      "type": "powershell",
+      "scripts": [
+        "{{template_dir}}/scripts/common/install-guest-tools.ps1",
+        "{{template_dir}}/scripts/common/enable-rdp.ps1",
+        "{{template_dir}}/scripts/common/disable-hibernate.ps1",
+        "{{template_dir}}/scripts/common/disable-autologin.ps1",
+        "{{template_dir}}/scripts/common/enable-uac.ps1",
+        "{{template_dir}}/scripts/common/no-expiration.ps1"
+      ]
     },
     {
-      "type": "windows-restart"
-    },
-    {
-      "cookbook_paths": [
-        "{{template_dir}}/cookbooks"
-      ],
-      "guest_os_type": "windows",
-      "run_list": [
-        "packer::vm_tools",
-        "packer::features",
-        "packer::enable_file_sharing",
-        "packer::enable_remote_desktop",
-        "packer::ui_tweaks"
-      ],
-      "type": "chef-solo"
-    },
-    {
-      "type": "windows-restart"
-    },
-    {
-      "cookbook_paths": [
-        "{{template_dir}}/cookbooks"
-      ],
-      "guest_os_type": "windows",
-      "run_list": [
-        "packer::cleanup",
-        "packer::defrag"
-      ],
-      "type": "chef-solo"
-    },
-    {
-      "elevated_password": "vagrant",
-      "elevated_user": "vagrant",
-      "script": "{{template_dir}}/scripts/common/cleanup.ps1",
-      "type": "powershell"
+      "type": "windows-restart",
+      "restart_command": "powershell \"& {(Get-WmiObject win32_operatingsystem).LastBootUpTime > C:\\ProgramData\\lastboot.txt; Restart-Computer -force}\"",
+      "restart_check_command": "powershell -command \"& {if ((get-content C:\\ProgramData\\lastboot.txt) -eq (Get-WmiObject win32_operatingsystem).LastBootUpTime) {Write-Output 'Sleeping for 600 seconds to wait for reboot'; start-sleep 600} else {Write-Output 'Reboot complete'}}\""
     },
     {
       "elevated_password": "vagrant",
@@ -111,7 +77,6 @@
     "build_directory": "./builds",
     "cpus": "2",
     "disk_size": "20000",
-    "floppy_dir": "{{template_dir}}/scripts/unattended/Autounattend.xml",
     "headless": "false",
     "iso_checksum": "sha256:4f1457c4fe14ce48c9b2324924f33ca4f0470475e6da851b39ccbf98f44e7852",
     "memory": "4096",
