@@ -40,8 +40,6 @@
       ],
       "guest_os_type": "windows",
       "run_list": [
-        "packer::disable_uac",
-        "packer::disable_restore",
         "packer::disable_windows_update",
         "packer::configure_power",
         "packer::disable_screensaver"
@@ -58,10 +56,8 @@
       "guest_os_type": "windows",
       "run_list": [
         "packer::vm_tools",
-        "packer::features",
         "packer::enable_file_sharing",
-        "packer::enable_remote_desktop",
-        "packer::ui_tweaks"
+        "packer::enable_remote_desktop"
       ],
       "type": "chef-solo"
     },
