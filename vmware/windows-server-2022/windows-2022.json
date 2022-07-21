@@ -98,7 +98,7 @@
     "cpus": "2",
     "disk_size": "40000",
     "floppy_dir": "{{template_dir}}/scripts/unattended/Autounattend.xml",
-    "headless": "false",
+    "headless": "true",
     "iso_checksum": "sha256:4f1457c4fe14ce48c9b2324924f33ca4f0470475e6da851b39ccbf98f44e7852",
     "memory": "4096",
     "template": "windows-2022-standard"
