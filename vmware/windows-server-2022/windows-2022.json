@@ -105,7 +105,7 @@
     },
     {
       "elevated_password": "vagrant",
-      "elevated_user": "vagrant",
+      "elevated_user": "Administrator",
       "type": "powershell",
       "scripts": [
         "{{template_dir}}/scripts/tidal/enable_docker_to_non_root_user.ps1"
