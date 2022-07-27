@@ -1,0 +1,116 @@
+{
+  "builders": [
+    {
+      "type": "vmware-iso",
+      "vm_name": "tidal-windows-10",
+      "format": "ova",
+
+      "iso_urls": [
+        "iso/18363.418.191007-0143.19h2_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso",
+        "https://software-download.microsoft.com/download/pr/18363.418.191007-0143.19h2_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso"
+      ],
+      "iso_checksum": "{{ user `iso_checksum` }}",
+
+      "communicator": "winrm",
+      "cpus": "{{ user `cpus` }}",
+      "memory": "{{ user `memory` }}",
+      "disk_size": "{{user `disk_size`}}",
+      "disk_adapter_type": "lsisas1068",
+
+      "floppy_files": [
+        "{{template_dir}}/scripts/unattended/Autounattend.xml",
+        "{{template_dir}}/scripts/common/base_setup.ps1"
+      ],
+      "guest_os_type": "windows9srv-64",
+      "headless": "{{ user `headless` }}",
+      "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-vmware",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "shutdown_timeout": "15m",
+      "tools_upload_flavor": "windows",
+      "tools_upload_path": "c:/Windows/Temp/vmware.iso",
+      "version": 19,
+      "winrm_password": "vagrant",
+      "winrm_timeout": "12h",
+      "winrm_username": "vagrant"
+    }
+  ],
+  "provisioners": [
+    {
+      "cookbook_paths": [
+        "{{template_dir}}/cookbooks"
+      ],
+      "guest_os_type": "windows",
+      "run_list": [
+        "packer::disable_windows_update",
+        "packer::configure_power",
+        "packer::disable_screensaver"
+      ],
+      "type": "chef-solo"
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "cookbook_paths": [
+        "{{template_dir}}/cookbooks"
+      ],
+      "guest_os_type": "windows",
+      "run_list": [
+        "packer::vm_tools",
+        "packer::enable_file_sharing",
+        "packer::enable_remote_desktop"
+      ],
+      "type": "chef-solo"
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "cookbook_paths": [
+        "{{template_dir}}/cookbooks"
+      ],
+      "guest_os_type": "windows",
+      "run_list": [
+        "packer::cleanup",
+        "packer::defrag"
+      ],
+      "type": "chef-solo"
+    },
+    {
+      "elevated_password": "vagrant",
+      "elevated_user": "vagrant",
+      "script": "{{template_dir}}/scripts/cleanup.ps1",
+      "type": "powershell"
+    },
+    {
+      "elevated_password": "vagrant",
+      "elevated_user": "vagrant",
+      "type": "powershell",
+      "scripts": [
+        "{{template_dir}}/scripts/tidal/install_tidal_tools.ps1",
+        "{{template_dir}}/scripts/tidal/install_git.ps1",
+        "{{template_dir}}/scripts/tidal/install_machine_stats.ps1",
+        "{{template_dir}}/scripts/tidal/install_additional_tools.ps1"
+      ]
+    },
+    {
+      "elevated_password": "vagrant",
+      "elevated_user": "Administrator",
+      "type": "powershell",
+      "scripts": [
+        "{{template_dir}}/scripts/tidal/install_docker.ps1"
+      ]
+    },
+    {
+      "type": "windows-restart"
+    }
+  ],
+  "variables": {
+    "build_directory": "./builds",
+    "cpus": "2",
+    "memory": "4096",
+    "disk_size": "40000",
+    "headless": "false",
+    "iso_checksum": "489ebee676e26cdb81377b0e6385c001a22589b8"
+  }
+}
