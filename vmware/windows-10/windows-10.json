@@ -79,7 +79,7 @@
     {
       "elevated_password": "vagrant",
       "elevated_user": "vagrant",
-      "script": "{{template_dir}}/scripts/cleanup.ps1",
+      "script": "{{template_dir}}/scripts/common/cleanup.ps1",
       "type": "powershell"
     },
     {
