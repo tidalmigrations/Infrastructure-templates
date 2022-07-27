@@ -56,6 +56,6 @@
 ## Useful resources
 
 - <https://github.com/chef/bento>
-- <https://github.com/pksrc/packer/tree>
+- <https://github.com/pksrc/packer>
 - <https://github.com/luciusbono/Packer-Windows10>
 - <https://github.com/StefanScherer/packer-windows>
