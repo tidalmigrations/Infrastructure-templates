@@ -23,7 +23,7 @@
       ],
       "guest_os_type": "windows9srv-64",
       "headless": "{{ user `headless` }}",
-      "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-vmware",
+      "output_directory": "{{ user `build_directory` }}/packer-windows-10-vmware",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "shutdown_timeout": "15m",
       "tools_upload_flavor": "windows",
