@@ -99,17 +99,6 @@
       "scripts": [
         "{{template_dir}}/scripts/tidal/install_docker.ps1"
       ]
-    },
-    {
-      "type": "windows-restart"
-    },
-    {
-      "elevated_password": "vagrant",
-      "elevated_user": "Administrator",
-      "type": "powershell",
-      "scripts": [
-        "{{template_dir}}/scripts/tidal/enable_docker_to_non_root_user.ps1"
-      ]
     }
   ],
   "variables": {
