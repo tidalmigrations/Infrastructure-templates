@@ -114,8 +114,8 @@
                     <WillShowUI>OnError</WillShowUI>
                 </ProductKey>
                 <AcceptEula>true</AcceptEula>
-                <FullName>Vagrant</FullName>
-                <Organization>Bento by Chef Software, Inc.</Organization>
+                <FullName>TidalMigrations</FullName>
+                <Organization>TidalMigrations</Organization>
             </UserData>
         </component>
     </settings>
@@ -150,28 +150,28 @@
       <TimeZone>UTC</TimeZone>
       <UserAccounts>
         <AdministratorPassword>
-          <Value>vagrant</Value>
+          <Value>tidal</Value>
           <PlainText>true</PlainText>
         </AdministratorPassword>
         <LocalAccounts>
           <LocalAccount wcm:action="add">
             <Password>
-              <Value>vagrant</Value>
+              <Value>tidal</Value>
               <PlainText>true</PlainText>
             </Password>
-            <Description>Vagrant User</Description>
-            <DisplayName>vagrant</DisplayName>
+            <Description>Tidal User</Description>
+            <DisplayName>tidal</DisplayName>
             <Group>administrators</Group>
-            <Name>vagrant</Name>
+            <Name>tidal</Name>
           </LocalAccount>
         </LocalAccounts>
       </UserAccounts>
             <AutoLogon>
                 <Password>
-                    <Value>vagrant</Value>
+                    <Value>tidal</Value>
                     <PlainText>true</PlainText>
                 </Password>
-                <Username>vagrant</Username>
+                <Username>tidal</Username>
                 <Enabled>true</Enabled>
             </AutoLogon>
       <FirstLogonCommands>
@@ -266,9 +266,9 @@
               <RequiresUserInput>true</RequiresUserInput>
           </SynchronousCommand>
           <SynchronousCommand wcm:action="add">
-              <CommandLine>cmd.exe /c wmic useraccount where "name='vagrant'" set PasswordExpires=FALSE</CommandLine>
+              <CommandLine>cmd.exe /c wmic useraccount where "name='tidal'" set PasswordExpires=FALSE</CommandLine>
               <Order>16</Order>
-              <Description>Disable password expiration for vagrant user</Description>
+              <Description>Disable password expiration for tidal user</Description>
           </SynchronousCommand>
       </FirstLogonCommands>
     </component>
