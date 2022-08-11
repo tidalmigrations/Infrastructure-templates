@@ -91,6 +91,14 @@
         "{{template_dir}}/scripts/tidal/install_machine_stats.ps1",
         "{{template_dir}}/scripts/tidal/install_additional_tools.ps1"
       ]
+    },
+    {
+      "elevated_password": "tidal",
+      "elevated_user": "Administrator",
+      "type": "powershell",
+      "scripts": [
+        "{{template_dir}}/scripts/tidal/install_tidal_tools.ps1"
+      ]
     }
   ],
   "variables": {
