@@ -41,6 +41,11 @@ echo \
 sudo apt-get update
 sudo apt-get install --yes docker-ce docker-ce-cli containerd.io
 
+# Add `ubuntu` to docker group
+sudo groupadd docker
+sudo usermod -aG docker ubuntu
+sudo chmod 666 /var/run/docker.sock
+
 # Add docker images to run tidal-tools offline
 docker pull gcr.io/tidal-1529434400027/cast-highlight:latest
 docker pull gcr.io/tidal-1529434400027/tidal-db-analyzer:v3.1.1
