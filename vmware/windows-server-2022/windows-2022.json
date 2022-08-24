@@ -91,6 +91,14 @@
         "{{template_dir}}/scripts/tidal/install_machine_stats.ps1",
         "{{template_dir}}/scripts/tidal/install_additional_tools.ps1"
       ]
+    },
+    {
+      "elevated_password": "vagrant",
+      "elevated_user": "Administrator",
+      "type": "powershell",
+      "scripts": [
+        "{{template_dir}}/scripts/tidal/install_docker.ps1"
+      ]
     }
   ],
   "variables": {
