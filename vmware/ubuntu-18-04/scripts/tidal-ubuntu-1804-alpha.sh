@@ -42,7 +42,7 @@ sudo apt-get update
 sudo apt-get install --yes docker-ce docker-ce-cli containerd.io
 
 # Add `ubuntu` to docker group
-sudo groupadd docker
+sudo groupadd docker --force
 sudo usermod -aG docker ubuntu
 sudo chmod 666 /var/run/docker.sock
 

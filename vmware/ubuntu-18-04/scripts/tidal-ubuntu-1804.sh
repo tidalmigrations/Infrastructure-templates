@@ -3,6 +3,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 echo "++ Installing Tidal Tools"
 curl https://get.tidal.sh/unix | bash
+su - ubuntu -c "curl https://get.tidal.sh/unix | bash"
 
 echo "++ Installing PIP"
 sudo apt-get install --yes python3-pip
@@ -42,7 +43,7 @@ sudo apt-get update
 sudo apt-get install --yes docker-ce docker-ce-cli containerd.io
 
 # Add `ubuntu` to docker group
-sudo groupadd docker
+sudo groupadd docker --force
 sudo usermod -aG docker ubuntu
 sudo chmod 666 /var/run/docker.sock
 
