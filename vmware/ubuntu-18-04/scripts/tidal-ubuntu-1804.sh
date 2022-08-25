@@ -3,7 +3,6 @@ export DEBIAN_FRONTEND=noninteractive
 
 echo "++ Installing Tidal Tools"
 curl https://get.tidal.sh/unix | bash
-su - ubuntu -c "curl https://get.tidal.sh/unix | bash"
 
 echo "++ Installing PIP"
 sudo apt-get install --yes python3-pip
