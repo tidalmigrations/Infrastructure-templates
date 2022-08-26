@@ -1,7 +1,10 @@
 #!/bin/sh -eux
 export DEBIAN_FRONTEND=noninteractive
 
-echo "++ Installing Tidal Tools"
+echo "++ Installing Tidal Tools for ubuntu user"
+su - ubuntu -c "curl https://get.tidal.sh/unix | bash"
+
+echo "++ Installing Tidal Tools for root user"
 curl https://get.tidal.sh/unix | bash
 
 echo "++ Installing PIP"
