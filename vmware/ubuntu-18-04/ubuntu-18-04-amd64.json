@@ -50,7 +50,7 @@
       "ssh_password": "tidal",
       "tools_upload_flavor": "linux",
 
-      "headless": "true",
+      "headless": "{{ user `headless` }}",
       "guest_os_type": "ubuntu-64",
       "output_directory": "builds/packer-ubuntu-18-04-amd64-vmware",
       "skip_export": false
@@ -80,8 +80,9 @@
   ],
   "variables": {
     "cpus": "2",
-    "memory": "2048",
+    "memory": "4096",
     "disk_size": "8192",
+    "headless": "true",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
     "no_proxy": "{{env `no_proxy`}}"
