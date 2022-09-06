@@ -1,3 +1,4 @@
+echo "++ Disabling swap"
 # Disable existing swap
 sudo swapoff -a
 
@@ -9,5 +10,6 @@ sudo mkswap /swapfile
 sudo swapon /swapfile
 sudo sed -i '$a/swapfile swap swap defaults 0 0' /etc/fstab
 
+echo "++ Created a new swap"
 # Show free memory
 sudo free -h
