@@ -48,7 +48,6 @@
       "ssh_timeout": "10000s",
       "ssh_username": "ubuntu",
       "ssh_password": "tidal",
-      "tools_upload_flavor": "linux",
 
       "headless": "{{ user `headless` }}",
       "guest_os_type": "ubuntu-64",
