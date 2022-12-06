@@ -1,6 +1,6 @@
-# VMWare templates
+# VMWare appliance - Ubuntu 18.04
 
-This folder contains [vmware-iso](https://www.packer.io/plugins/builders/vmware/iso) packer builder templates that can be used to create the Ubuntu or Windows server OVA file with all necessary Tidal software already installed in it. More information on how to build the OVA is in the READMEs within the folders.
+## Prerequisites
 
 - [Packer](https://learn.hashicorp.com/tutorials/packer/get-started-install-cli?in=packer/aws-get-started#installing-packer)
 - VMware ([VMware Fusion](https://www.vmware.com/au/products/fusion.html) for Mac and [VMware Workstation](https://www.vmware.com/au/products/workstation-player.html) for Linux/Windows)
@@ -35,10 +35,10 @@ This folder contains [vmware-iso](https://www.packer.io/plugins/builders/vmware/
 
 4. This will take 20 to 80 minutes based on your OS and machine. Grab a coffee and appreciate life. At the end of the process, the OVA will be at `./builds/packer-ubuntu-18-04-amd64-vmware/tidal-ubuntu-18-04-server-amd64.ova` along with a few other files.
 
-   If you're running the build again, then you'll have to [force](https://www.packer.io/docs/commands/build#force) the build to remove the artifacts from previous build.
+   If you're running the build again, then you'll have to [force](https://www.packer.io/docs/commands/build#force) it to remove the artifacts from the previous build.
 
    ```sh
-   packer build -only=vmware-iso -force windows-2022.json
+   packer build -force ubuntu-18.04-amd64.json
    ```
 
 5. (Optional) You can store this OVA file in an S3 bucket after setting up your AWS credentials.

@@ -1,4 +1,4 @@
-# Windows Server 2022 VMWare-iso packer builder
+# VMWare appliance - Windows Server 2022 
 
 ## Prerequisites
 
@@ -41,7 +41,7 @@
 
 4. This will take 30 to 90 minutes based on your OS and machine. Grab a coffee and look at the beautiful photos taken by the James Webb Space Telescope. At the end of the process, the OVA will be at `./builds/packer-windows-2022-standard-vmware/tidal-win-22.ova` along with a few other files.
 
-   If you're running the build again, then you'll have to [force](https://www.packer.io/docs/commands/build#force) the build to remove the artifacts from previous build.
+   If you're running the build again, then you'll have to [force](https://www.packer.io/docs/commands/build#force) the build to remove the artifacts from the previous build.
 
    ```sh
    packer build -only=vmware-iso -force windows-2022.json
