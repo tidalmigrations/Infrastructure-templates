@@ -42,7 +42,7 @@ infrastructure-templates
 |           └── windows-server-2019.pkr.hcl
 └── vmware
     ├── README.md
-    ├── ubuntu-18-04
+    ├── windows-server-2022
     |   ├── cookbooks
     |   │   └── packer
     |   ├── scripts

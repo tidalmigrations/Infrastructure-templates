@@ -28,9 +28,9 @@
       "tools_upload_flavor": "windows",
       "tools_upload_path": "c:/Windows/Temp/vmware.iso",
       "version": 19,
-      "winrm_password": "vagrant",
+      "winrm_password": "tidal",
       "winrm_timeout": "12h",
-      "winrm_username": "vagrant"
+      "winrm_username": "tidal"
     }
   ],
   "provisioners": [
@@ -76,20 +76,28 @@
       "type": "chef-solo"
     },
     {
-      "elevated_password": "vagrant",
-      "elevated_user": "vagrant",
+      "elevated_password": "tidal",
+      "elevated_user": "tidal",
       "script": "{{template_dir}}/scripts/common/cleanup.ps1",
       "type": "powershell"
     },
     {
-      "elevated_password": "vagrant",
-      "elevated_user": "vagrant",
+      "elevated_password": "tidal",
+      "elevated_user": "tidal",
       "type": "powershell",
       "scripts": [
         "{{template_dir}}/scripts/tidal/install_tidal_tools.ps1",
         "{{template_dir}}/scripts/tidal/install_git.ps1",
         "{{template_dir}}/scripts/tidal/install_machine_stats.ps1",
         "{{template_dir}}/scripts/tidal/install_additional_tools.ps1"
+      ]
+    },
+    {
+      "elevated_password": "tidal",
+      "elevated_user": "Administrator",
+      "type": "powershell",
+      "scripts": [
+        "{{template_dir}}/scripts/tidal/install_tidal_tools.ps1"
       ]
     }
   ],

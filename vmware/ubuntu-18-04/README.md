@@ -1,4 +1,4 @@
-# Ubuntu 18.04 VMWare-iso packer builder
+# VMWare appliance - Ubuntu 18.04
 
 ## Prerequisites
 
@@ -12,50 +12,55 @@
     export PATH=/Applications/VMware\ Fusion.app/Contents/Library/VMware\ OVF\ Tool/:$PATH
     ```
 
-- When running locally, you can download the required ISO file in the `iso` directory. (Download: [ubuntu-18.04.6-server-amd64.iso](https://cdimage.ubuntu.com/ubuntu/releases/18.04.6/release/ubuntu-18.04.6-server-amd64.iso)) If packer cannot find this file then it'll automatically download it.
+- When running locally, you can download the required ISO file in the `iso` directory. (Download: [ubuntu-18.04.6-server-amd64.iso](https://cdimage.ubuntu.com/ubuntu/releases/18.04.6/release/ubuntu-18.04.6-server-amd64.iso)) If packer cannot find it then it'll automatically download it.
+
+## List of software installed on Ubuntu OVA
+
+- Tidal Tools
+- Machine Stats
+- Nmap
+- DNS tools
+- Docker
+- Docker images
+  - Cast Highlights
+  - Tidal DB Analyzer
+  - Healthchek
+  - Hello World
+- Pip
+- jq
+- Python3
 
 ## How to run
 
-1. Navigate to the image folder you plan to generate. For example, ubuntu-18-04
+1. (Optional) Add following env vars to export the logs in a file
 
-    ```sh
-    cd ubuntu-18-04
-    ```
+   ```sh
+   export PACKER_LOG=1
+   export PACKER_LOG_PATH="packerlog.txt"
+   ```
 
-2. (Optional) Add following env vars to export the logs in a file
-   - For Unix/Mac:
+2. (Optional) If you want to follow the build process in GUI, then you need to turn the `headless` bool to `false` in the `ubuntu-18-04-amd64.json` file.
 
-      ```sh
-      export PACKER_LOG=1
-      export PACKER_LOG_PATH="packerlog.txt"
-      ```
+3. To build a VMware appliance run the following command:
 
-   - For Windows:
+   ```sh
+   packer build ubuntu-18.04-amd64.json
+   ```
 
-      ```sh
-      $env:PACKER_LOG=1
-      $env:PACKER_LOG_PATH="packerlog.txt"
-      ```
+4. This will take 20 to 80 minutes based on your OS and machine. Grab a coffee and appreciate life. At the end of the process, the OVA will be at `./builds/packer-ubuntu-18-04-amd64-vmware/tidal-ubuntu-18-04-server-amd64.ova` along with a few other files.
 
-3. (Optional) If you want to follow the build process in GUI, then you need to turn the `headless` bool to `false` in the `ubuntu-18-04-amd64.json` file.
+   If you're running the build again, then you'll have to [force](https://www.packer.io/docs/commands/build#force) it to remove the artifacts from the previous build.
 
-4. Build the packer template by running one of these commands:
-   - **Option A**: To build the appliance with [Machine Stats' stable version](https://pypi.org/project/machine-stats/).
+   ```sh
+   packer build -force ubuntu-18.04-amd64.json
+   ```
 
-      ```sh
-      packer build ubuntu-18.04-amd64.json
-      ```
-
-   - **Option B**: To build the appliance with [Machine Stats Alpha](https://pypi.org/project/machine-stats-alpha/).
-
-      ```sh
-      packer build ubuntu-18.04-amd64-alpha.json
-      ```
-
-5. This will take 20 to 80 minutes based on your OS and machine. Grab a coffee and appreciate life. At the end of the process, the OVA will be at `./builds/packer-ubuntu-18-04-amd64-vmware/tidal-ubuntu-18-04-server-amd64.ova` along with a few other files. If you're running the packer template again, the `packer-ubuntu-18-04-amd64-vmware` directory must not exist or be empty.
-
-6. Optionally, you can store this OVA file in an S3 bucket after setting up your AWS credentials.
+5. (Optional) You can store this OVA file in an S3 bucket after setting up your AWS credentials.
 
    ```sh
    aws s3 cp ./builds/packer-ubuntu-18-04-amd64-vmware/tidal-ubuntu-18-04-server-amd64.ova s3://YOUR_BUCKET_NAME/
    ```
+
+## Useful resources
+
+- <https://github.com/chef/bento>

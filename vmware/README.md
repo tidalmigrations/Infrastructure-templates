@@ -7,19 +7,3 @@ This folder contains [vmware-iso](https://www.packer.io/plugins/builders/vmware/
 
 - [Windows Server 2022](/windows-server-2022/)
   Create a Windows Server 2022 OVA file with Tidal Tools and Machine Stats installed in it.
-
-## List of software installed on Ubuntu OVA
-
-- Tidal Tools
-- Machine Stats (main or alpha)
-- Nmap
-- DNS tools
-- Docker
-- Docker images
-  - Cast Highlights
-  - Tidal DB Analyzer
-  - Healthchek
-  - Hello World
-- Pip
-- jq
-- Python3
