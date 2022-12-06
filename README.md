@@ -8,7 +8,7 @@ Requirements and steps to run these packer templates are inside their respective
 
 ## Folder Structure
 
-```
+```text
 infrastructure-templates
 ├── README.md
 ├── .github
@@ -42,6 +42,14 @@ infrastructure-templates
 |           └── windows-server-2019.pkr.hcl
 └── vmware
     ├── README.md
+    ├── windows-server-2022
+    |   ├── cookbooks
+    |   │   └── packer
+    |   ├── scripts
+    |   |   ├── common
+    |   |   ├── tidal
+    |   │   └── unattended
+    |   └── windows-2022.json
     └── ubuntu-18-04
         ├── scripts
         |   ├── cleanup.sh
