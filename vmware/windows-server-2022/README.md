@@ -16,13 +16,7 @@
 
 ## How to run
 
-1. Navigate to the image folder you plan to generate. For example, windows-server-2022
-
-    ```sh
-    cd windows-server-2022
-    ```
-
-2. (Optional) Add following env vars to export the logs in a file
+1. (Optional) Add following env vars to export the logs in a file
    - For Unix/Mac:
 
       ```sh
@@ -37,17 +31,23 @@
       $env:PACKER_LOG_PATH="packerlog.txt"
       ```
 
-3. (Optional) If you want to follow the build process in GUI, then you need to turn the `headless` bool to `false` in the `windows-2022.json` file.
+2. (Optional) If you want to follow the build process in GUI, then you need to turn the `headless` bool to `false` in the `windows-2022.json` file.
 
-4. Build the packer template by running this command:
+3. To build a VMware appliance run the following command::
 
       ```sh
       packer build -only=vmware-iso windows-2022.json
       ```
 
-5. This will take 30 to 90 minutes based on your OS and machine. Grab a coffee and look at the beautiful photos taken by the James Webb Space Telescope. At the end of the process, the OVA will be at `./builds/packer-windows-2022-standard-vmware/tidal-win-22.ova` along with a few other files. If you're running the packer template again, the `packer-windows-2022-standard-vmware` directory must not exist or be empty.
+4. This will take 30 to 90 minutes based on your OS and machine. Grab a coffee and look at the beautiful photos taken by the James Webb Space Telescope. At the end of the process, the OVA will be at `./builds/packer-windows-2022-standard-vmware/tidal-win-22.ova` along with a few other files.
 
-6. Optionally, you can store this OVA file in an S3 bucket after setting up your AWS credentials.
+   If you're running the build again, then you'll have to [force](https://www.packer.io/docs/commands/build#force) the build to remove the artifacts from previous build.
+
+   ```sh
+   packer build -only=vmware-iso -force windows-2022.json
+   ```
+
+5. (Optional) You can store this OVA file in an S3 bucket after setting up your AWS credentials.
 
    ```sh
    aws s3 cp ./builds/packer-windows-2022-standard-vmware/tidal-win-22.ova s3://YOUR_BUCKET_NAME/
@@ -56,6 +56,6 @@
 ## Useful resources
 
 - <https://github.com/chef/bento>
-- <https://github.com/pksrc/packer/tree>
+- <https://github.com/pksrc/packer>
 - <https://github.com/luciusbono/Packer-Windows10>
 - <https://github.com/StefanScherer/packer-windows>
