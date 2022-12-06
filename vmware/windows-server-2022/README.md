@@ -14,6 +14,14 @@
 
 - When running locally, you can download the required ISO file in the `iso` directory. (Download: [20348.169.210806-2348.fe_release_svc_refresh_SERVER_EVAL_x64FRE_en-us.iso](https://software-download.microsoft.com/download/sg/20348.169.210806-2348.fe_release_svc_refresh_SERVER_EVAL_x64FRE_en-us.iso)) If packer cannot find this file then it'll automatically download it.
 
+## List of software installed on Windows OVA
+
+- Tidal Tools
+- Machine Stats
+- Chocolatey
+- Git
+- Chrome
+
 ## How to run
 
 1. (Optional) Add following env vars to export the logs in a file

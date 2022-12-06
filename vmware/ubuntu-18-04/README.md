@@ -16,6 +16,20 @@
 
 ## List of software installed on Ubuntu OVA
 
+- Tidal Tools
+- Machine Stats
+- Nmap
+- DNS tools
+- Docker
+- Docker images
+  - Cast Highlights
+  - Tidal DB Analyzer
+  - Healthchek
+  - Hello World
+- Pip
+- jq
+- Python3
+
 ## How to run
 
 1. (Optional) Add following env vars to export the logs in a file
