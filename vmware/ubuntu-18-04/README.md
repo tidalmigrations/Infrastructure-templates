@@ -22,7 +22,6 @@
 - DNS tools
 - Docker
 - Docker images
-  - Cast Highlights
   - Tidal DB Analyzer
   - Healthchek
   - Hello World
