@@ -50,8 +50,7 @@ sudo usermod -aG docker ubuntu
 sudo chmod 666 /var/run/docker.sock
 
 echo "++ Add docker images to run tidal-tools offline"
-docker pull gcr.io/tidal-1529434400027/cast-highlight:latest
-docker pull gcr.io/tidal-1529434400027/tidal-db-analyzer:v3.1.4
+docker pull gcr.io/tidal-1529434400027/tidal-db-analyzer:v3.1.6
 docker pull gcr.io/tidal-1529434400027/healthchek:latest
 docker pull gcr.io/tidal-1529434400027/hello-world:latest
 
