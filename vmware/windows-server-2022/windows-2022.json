@@ -25,7 +25,6 @@
       "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-vmware",
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "shutdown_timeout": "15m",
-      "tools_upload_flavor": "windows",
       "tools_upload_path": "c:/Windows/Temp/vmware.iso",
       "version": 19,
       "winrm_password": "tidal",
