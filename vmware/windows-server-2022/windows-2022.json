@@ -2,7 +2,7 @@
   "builders": [
     {
       "type": "vmware-iso",
-      "vm_name": "tidal-win-22",
+      "vm_name": "tidal-windows-server-2022",
       "format": "ova",
 
       "iso_urls": [
