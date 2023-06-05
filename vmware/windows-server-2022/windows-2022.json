@@ -2,7 +2,7 @@
   "builders": [
     {
       "type": "vmware-iso",
-      "vm_name": "tidal-windows-server-2022",
+      "vm_name": "tidal-windows-server-2022-vmware",
       "format": "ova",
 
       "iso_urls": [
@@ -27,6 +27,34 @@
       "shutdown_timeout": "15m",
       "tools_upload_path": "c:/Windows/Temp/vmware.iso",
       "version": 19,
+      "winrm_password": "tidal",
+      "winrm_timeout": "12h",
+      "winrm_username": "tidal"
+    },
+    {
+      "type": "virtualbox-iso",
+      "vm_name": "tidal-windows-server-2022-virtualbox",
+      "format": "ova",
+
+      "iso_urls": [
+        "iso/20348.169.210806-2348.fe_release_svc_refresh_SERVER_EVAL_x64FRE_en-us.iso",
+        "https://software-download.microsoft.com/download/sg/20348.169.210806-2348.fe_release_svc_refresh_SERVER_EVAL_x64FRE_en-us.iso"
+      ],
+      "iso_checksum": "{{ user `iso_checksum` }}",
+
+      "communicator": "winrm",
+      "cpus": "{{ user `cpus` }}",
+      "memory": "{{ user `memory` }}",
+      "disk_size": "{{user `disk_size`}}",
+
+      "floppy_files": [
+        "{{ user `floppy_dir` }}"
+      ],
+      "guest_os_type": "windows9srv-64",
+      "headless": "{{ user `headless` }}",
+      "output_directory": "{{ user `build_directory` }}/packer-{{user `template`}}-vmware",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "shutdown_timeout": "15m",
       "winrm_password": "tidal",
       "winrm_timeout": "12h",
       "winrm_username": "tidal"
@@ -104,8 +132,9 @@
     "cpus": "2",
     "disk_size": "40000",
     "floppy_dir": "{{template_dir}}/scripts/unattended/Autounattend.xml",
-    "headless": "true",
+    "headless": "false",
     "iso_checksum": "sha256:4f1457c4fe14ce48c9b2324924f33ca4f0470475e6da851b39ccbf98f44e7852",
+    "ova_checksum": "sha256:979d268b79d626f45bacca222b72243f838dff9b83cbbb5aa68cd48de5c69a6a",
     "memory": "4096",
     "template": "windows-2022-standard"
   }
