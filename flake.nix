@@ -5,15 +5,40 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tidal-tools = {
+      url = "git+ssh://git@github.com/tidalmigrations/tidal-tools?ref=main&rev=34550d4abc304c1428465ab09b0f558c075f1c35";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = { self, nixpkgs, nixos-generators, ... }:
+  outputs = { self, nixpkgs, nixos-generators, tidal-tools, ... }:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
     in
     {
       packages.x86_64-linux = {
-        vbox = nixos-generators.nixosGenerate {
+        hyperv = nixos-generators.nixosGenerate {
+          specialArgs = {
+            tidal-tools = tidal-tools;
+          };
           system = "x86_64-linux";
+          modules = [
+            ./configuration.nix
+          ];
+          format = "hyperv";
+        };
+        azure = nixos-generators.nixosGenerate {
+          specialArgs = {
+            tidal-tools = tidal-tools;
+          };
+          system = "x86_64-linux";
+          modules = [
+            ./configuration.nix
+          ];
+          format = "azure";
+        };
+        vbox = nixos-generators.nixosGenerate {
+          system = "
+        x86_64-linux ";
           modules = [
             # you can include your own nixos configuration here, i.e.
             ./configuration.nix
@@ -57,6 +82,9 @@
             ./configuration.nix
           ];
           format = "vm";
+          specialArgs = {
+            tidal-tools = tidal-tools;
+          };
         };
       };
       devShells.x86_64-linux.default = pkgs.mkShell {

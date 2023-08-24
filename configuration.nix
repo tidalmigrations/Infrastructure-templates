@@ -1,4 +1,4 @@
-{ self, pkgs, ... }: {
+{ self, pkgs, tidal-tools, ... }: {
   nix = {
     extraOptions = ''
       experimental-features = nix-command flakes
@@ -13,7 +13,7 @@
 
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  # networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   users.users.tidal = {
     isNormalUser = true;
@@ -23,13 +23,7 @@
 
   environment = {
     systemPackages = with pkgs; [
-      # - Docker images
-      #   - Tidal DB Analyzer
-      #   - Healthchek
-      #   - Hello World
-      # - Pip
-      # - jq
-      # - Python3
+      tidal-tools.packages.x86_64-linux.default
       docker
       python311
       python311Packages.pip
